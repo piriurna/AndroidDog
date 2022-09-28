@@ -13,17 +13,22 @@ class LoadDogBreedsUseCase @Inject constructor(
 ) {
 
 
-    operator fun invoke() : Flow<Resource<List<Breed>>> = flow {
+    operator fun invoke() : Flow<Resource<Boolean>> = flow {
         emit(Resource.Loading())
-
 
         val dogBreedList : ApiNetworkResponse<List<Breed>> = dogRepository.getBreeds()
 
-
         dogBreedList.data?.let { breeds ->
-            emit(Resource.Success(breeds))
+
+            dogRepository.insertBreedsIntoDb(breeds)
+
+            emit(Resource.Success(true))
         }?:run {
-            emit(Resource.Error("Error fetching dog breeds"))
+            if(dogRepository.getBreedsFromDb().isNotEmpty()) {
+                emit(Resource.Success(true))
+            } else {
+                emit(Resource.Error("Error fetching dog breeds"))
+            }
         }
     }
 }
