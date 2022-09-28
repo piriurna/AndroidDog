@@ -1,9 +1,19 @@
 package com.piriurna.data.database.entities
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "breed")
+@Entity(tableName = "breed",
+    foreignKeys = [
+        ForeignKey(
+            entity = ImageEntity::class,
+            parentColumns = arrayOf("imageId"),
+            childColumns = arrayOf("breedImageId"),
+            onDelete = ForeignKey.CASCADE
+        ),
+    ])
 data class BreedEntity(
     @PrimaryKey
     val breedId: Int,
@@ -11,6 +21,7 @@ data class BreedEntity(
     val category : String, // replaced with description
     val origin : String,
     val temperament : String,
-    val imageUrl: String
+    @ColumnInfo(index = true)
+    val breedImageId: String
 ) {
 }

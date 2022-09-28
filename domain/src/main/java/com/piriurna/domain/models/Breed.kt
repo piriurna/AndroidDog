@@ -6,5 +6,5 @@ data class Breed(
     val category : String, // replaced with description
     val origin : String,
     val temperament : String,
-    val imageUrl: String
+    val image: BreedImage
 )

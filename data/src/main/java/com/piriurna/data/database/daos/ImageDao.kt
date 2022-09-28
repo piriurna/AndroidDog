@@ -5,17 +5,15 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.piriurna.data.database.entities.BreedEntity
+import com.piriurna.data.database.entities.ImageEntity
 import com.piriurna.data.database.models.BreedWithImage
 
 @Dao
-interface BreedDao {
+interface ImageDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertBreedList(breeds: List<BreedEntity>) : List<Long>
+    suspend fun insertImages(images: List<ImageEntity>) : List<Long>
 
-    @Query("SELECT * FROM breed")
-    suspend fun getBreedList() : List<BreedWithImage>
-
-    @Query("SELECT * FROM breed WHERE name LIKE :queryString")
-    suspend fun getBreedsWithQuery(queryString : String) : List<BreedWithImage>
+    @Query("SELECT * FROM image WHERE imageId = :id")
+    suspend fun getImage(id : String) : ImageEntity
 }
