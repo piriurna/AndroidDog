@@ -10,6 +10,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.piriurna.androiddog.presentation.navigation.RootNavigationGraph
 import com.piriurna.androiddog.ui.theme.AndroidDogTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,13 +19,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AndroidDogTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Greeting("Android")
-                }
+                RootNavigationGraph(navController = rememberNavController())
             }
         }
     }
