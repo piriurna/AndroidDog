@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -24,6 +24,7 @@ fun ADScaffold(
     content: @Composable (PaddingValues) -> Unit,
 ) {
 
+
     Box(
         modifier = Modifier
             .background(Color.Black)
@@ -40,7 +41,7 @@ fun ADScaffold(
                 navController?.let { navController ->
                     if(bottomBarItems.isNotEmpty()) {
                         ADBottomNavigation(
-                            selectedColor = Color.Cyan,
+                            selectedColor = Color.Black,
                             unselectedColor = Color.LightGray,
                             items = bottomBarItems,
                             selectedRoute = bottomBarItems[0].route,

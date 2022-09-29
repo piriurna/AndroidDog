@@ -8,7 +8,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 
 open class BottomNavigationItem(
     val route : String,
-    val icon : ImageVector,
+    val iconId : Int,
     val title : String
 ) {
 }

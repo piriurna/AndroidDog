@@ -1,11 +1,14 @@
 package com.piriurna.androiddog.presentation.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.piriurna.androiddog.presentation.breeds.BreedListScreen
 import com.piriurna.androiddog.presentation.home.HomeScreen
 import com.piriurna.androiddog.presentation.navigation.models.Graph
+import com.piriurna.androiddog.presentation.navigation.models.NavigationOptions
 
 @Composable
 fun HomeNavigationGraph(navController: NavHostController) {
@@ -16,7 +19,7 @@ fun HomeNavigationGraph(navController: NavHostController) {
         startDestination = HomeDestinationScreen.BreedList.route
     ) {
         composable(route = HomeDestinationScreen.BreedList.route) {
-            HomeScreen()
+            BreedListScreen(navController)
         }
 
         composable(route = HomeDestinationScreen.BreedSearch.route) {
@@ -27,6 +30,6 @@ fun HomeNavigationGraph(navController: NavHostController) {
 }
 
 sealed class HomeDestinationScreen(val route: String) {
-    object BreedList : RootDestinationScreen(route = "BREED_LIST")
-    object BreedSearch : RootDestinationScreen(route = "BREED_SEARCH")
+    object BreedList : HomeDestinationScreen(route = NavigationOptions.AllBreeds.route)
+    object BreedSearch : HomeDestinationScreen(route = NavigationOptions.SearchBreed.route)
 }

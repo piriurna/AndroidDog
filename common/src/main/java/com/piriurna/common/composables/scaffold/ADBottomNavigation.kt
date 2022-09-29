@@ -8,6 +8,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -43,7 +45,7 @@ fun ADBottomNavigation(
         ){
             items.forEach { item ->
                 ADNavigationItem(
-                    icon = item.icon,
+                    icon = ImageVector.vectorResource(id = item.iconId),
                     text = item.title,
                     selected = selectedItem == item.route,
                     selectedColor = selectedColor,
@@ -75,7 +77,7 @@ private fun ADBottomNavigationPreview() {
                 .align(Alignment.BottomCenter)
                 .padding(bottom = 16.dp),
             items = listOf(),
-            selectedRoute = BottomNavigationItem("", Icons.Default.Face, "").route,
+            selectedRoute = BottomNavigationItem("", 0, "").route,
             onItemSelected = {
                 print("a")
             },
