@@ -7,8 +7,12 @@ import androidx.room.PrimaryKey
 data class ImageEntity(
     @PrimaryKey
     val imageId: String,
-    val height : Int,
-    val width : Int,
+    val width : Int = 300,
+    val height : Int = (width.toFloat()/DEFAULT_HEIGHT_RATIO).toInt(),
     val url : String
 ) {
+
+    companion object {
+        const val DEFAULT_HEIGHT_RATIO = 0.5625f
+    }
 }

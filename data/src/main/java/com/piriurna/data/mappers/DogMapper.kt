@@ -30,7 +30,7 @@ fun ImageDto.toImage() : BreedImage {
     return BreedImage(
         id = this.id,
         width = this.width,
-        height = this.height,
+        height = height,
         url = this.url
     )
 }
