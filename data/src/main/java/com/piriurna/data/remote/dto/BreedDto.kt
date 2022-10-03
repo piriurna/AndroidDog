@@ -5,31 +5,31 @@ import com.google.gson.annotations.SerializedName
 
 data class BreedDto(
     @SerializedName("bred_for")
-    val bredFor: String,
+    val bredFor: String?,
     @SerializedName("breed_group")
-    val breedGroup: String,
+    val breedGroup: String?,
     @SerializedName("country_code")
-    val countryCode: String,
+    val countryCode: String?,
     @SerializedName("description")
-    val description: String,
+    val description: String?,
     @SerializedName("height")
-    val heightDto: HeightDto,
+    val heightDto: HeightDto?,
     @SerializedName("history")
-    val history: String,
+    val history: String?,
     @SerializedName("id")
     val id: Int,
     @SerializedName("image")
     val imageDto: ImageDto,
     @SerializedName("life_span")
-    val lifeSpan: String,
+    val lifeSpan: String?,
     @SerializedName("name")
-    val name: String,
+    val name: String?,
     @SerializedName("origin")
-    val origin: String,
+    val origin: String?,
     @SerializedName("reference_image_id")
-    val referenceImageId: String,
+    val referenceImageId: String?,
     @SerializedName("temperament")
-    val temperament: String,
+    val temperament: String?,
     @SerializedName("weight")
-    val weightDto: WeightDto
+    val weightDto: WeightDto?
 )

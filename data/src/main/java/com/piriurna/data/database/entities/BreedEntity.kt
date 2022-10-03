@@ -17,11 +17,11 @@ import androidx.room.PrimaryKey
 data class BreedEntity(
     @PrimaryKey
     val breedId: Int,
-    val name : String,
-    val category : String, // replaced with description
-    val origin : String,
-    val temperament : String,
+    val name : String?,
+    val category : String?, // replaced with description
+    val origin : String?,
+    val temperament : String?,
     @ColumnInfo(index = true)
-    val breedImageId: String
+    val breedImageId: String?
 ) {
 }

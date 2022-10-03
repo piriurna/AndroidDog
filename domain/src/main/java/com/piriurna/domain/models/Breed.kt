@@ -15,6 +15,10 @@ data class Breed(
         return image.getRelativeHeight(width)
     }
 
+    fun getRelativeWidth(height : Int) : Int{
+        return image.getRelativeWidth(height)
+    }
+
     companion object {
         val mockBreeds = listOf(
             Breed(

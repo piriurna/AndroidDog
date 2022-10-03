@@ -11,6 +11,12 @@ data class BreedImage(
         val heightRatio = this.height.toFloat() / this.width.toFloat()
         return (width * heightRatio).toInt()
     }
+
+    fun getRelativeWidth(height: Int) : Int {
+        val widthRatio = this.width.toFloat() / this.height.toFloat()
+        return (height * widthRatio).toInt()
+    }
+
     companion object {
         val mockImages = listOf(
             BreedImage(

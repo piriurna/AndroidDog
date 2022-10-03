@@ -11,10 +11,10 @@ import com.piriurna.domain.models.BreedImage
 fun BreedDto.toBreed() : Breed {
     return Breed(
         id = this.id,
-        name = this.name,
-        category = this.description,
-        origin = this.origin,
-        temperament = this.temperament,
+        name = this.name?:"",
+        category = this.description?:"",
+        origin = this.origin?:"",
+        temperament = this.temperament?:"",
         image = this.imageDto.toImage(),
     )
 }
@@ -53,6 +53,12 @@ fun BreedImage.toImageEntity() : ImageEntity {
     )
 }
 
+fun List<BreedImage>.toImageEntity() : List<ImageEntity> {
+    return this.map { breedImage ->
+        breedImage.toImageEntity()
+    }
+}
+
 
 
 fun Breed.toBreedEntity() : BreedEntity {
@@ -76,10 +82,10 @@ fun List<Breed>.toBreedEntity() : List<BreedEntity> {
 fun BreedWithImage.toBreed() : Breed {
     return Breed(
         id = this.breed.breedId,
-        name = this.breed.name,
-        category = this.breed.category,
-        origin = this.breed.origin,
-        temperament = this.breed.temperament,
+        name = this.breed.name?:"",
+        category = this.breed.category?:"",
+        origin = this.breed.origin?:"",
+        temperament = this.breed.temperament?:"",
         image = this.image.toImage(),
     )
 }
