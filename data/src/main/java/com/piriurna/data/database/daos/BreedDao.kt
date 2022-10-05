@@ -16,6 +16,9 @@ interface BreedDao {
     @Query("SELECT * FROM breed")
     suspend fun getBreedList() : List<BreedWithImage>
 
+    @Query("SELECT * FROM breed WHERE breedId =:id")
+    suspend fun getBreed(id : String) : BreedWithImage
+
     @Query("SELECT * FROM breed WHERE name LIKE '%' || :queryString || '%'")
     suspend fun getBreedsWithQuery(queryString : String) : List<BreedWithImage>
 }

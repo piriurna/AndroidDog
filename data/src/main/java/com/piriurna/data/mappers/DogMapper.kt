@@ -12,7 +12,7 @@ fun BreedDto.toBreed() : Breed {
     return Breed(
         id = this.id,
         name = this.name?:"",
-        category = this.description?:"",
+        category = this.breedGroup?:"",
         origin = this.origin?:"",
         temperament = this.temperament?:"",
         image = this.imageDto.toImage(),

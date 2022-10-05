@@ -26,6 +26,10 @@ class DogRepositoryImpl(
         return breedDao.getBreedList().toBreedObject()
     }
 
+    override suspend fun getBreedFromDb(id: String): Breed {
+        return breedDao.getBreed(id).toBreed()
+    }
+
     override suspend fun getBreedsFromDbWithQuery(queryString: String): List<Breed> {
         return breedDao.getBreedsWithQuery(queryString).toBreedObject()
     }

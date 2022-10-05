@@ -12,5 +12,7 @@ interface DogRepository {
 
     suspend fun getBreedsFromDb() : List<Breed>
 
+    suspend fun getBreedFromDb(id : String) : Breed
+
     suspend fun getBreedsFromDbWithQuery(queryString : String) : List<Breed>
 }
