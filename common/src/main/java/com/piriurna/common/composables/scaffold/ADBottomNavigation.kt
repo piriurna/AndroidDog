@@ -1,6 +1,7 @@
 package com.piriurna.common.composables.scaffold
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Face
@@ -40,6 +41,7 @@ fun ADBottomNavigation(
         Row(
             modifier = modifier
                 .fillMaxWidth()
+                .clickable(enabled = false, onClick = {})
                 .background(Color.White),
             horizontalArrangement = Arrangement.SpaceBetween
         ){

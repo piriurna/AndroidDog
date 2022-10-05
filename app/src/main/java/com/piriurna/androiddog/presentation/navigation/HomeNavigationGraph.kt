@@ -9,6 +9,7 @@ import com.piriurna.androiddog.presentation.breeds.BreedListScreen
 import com.piriurna.androiddog.presentation.home.HomeScreen
 import com.piriurna.androiddog.presentation.navigation.models.Graph
 import com.piriurna.androiddog.presentation.navigation.models.NavigationOptions
+import com.piriurna.androiddog.presentation.search.SearchBreedsScreen
 
 @Composable
 fun HomeNavigationGraph(navController: NavHostController) {
@@ -18,12 +19,15 @@ fun HomeNavigationGraph(navController: NavHostController) {
         route = Graph.HOME_GRAPH,
         startDestination = HomeDestinationScreen.BreedList.route
     ) {
+
+        breedNavigationGraph(navController)
+
         composable(route = HomeDestinationScreen.BreedList.route) {
             BreedListScreen(navController)
         }
 
         composable(route = HomeDestinationScreen.BreedSearch.route) {
-//            SplashScreen(navController = navController)
+            SearchBreedsScreen(navController = navController)
         }
     }
 

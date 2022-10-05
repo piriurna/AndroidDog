@@ -6,4 +6,6 @@ object Graph {
 
     const val HOME_GRAPH = "home_graph"
 
+    const val BREED_GRAPH = "breed_graph"
+
 }
