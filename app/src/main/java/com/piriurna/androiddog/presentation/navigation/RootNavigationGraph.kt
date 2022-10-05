@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.piriurna.androiddog.presentation.home.HomeScreen
 import com.piriurna.androiddog.presentation.navigation.models.Graph
+import com.piriurna.androiddog.presentation.splash.SplashScreen
 
 @Composable
 fun RootNavigationGraph(navController: NavHostController) {
@@ -13,14 +14,14 @@ fun RootNavigationGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
         route = Graph.ROOT_GRAPH,
-        startDestination = RootDestinationScreen.Home.route
+        startDestination = RootDestinationScreen.Splash.route
     ) {
         composable(route = RootDestinationScreen.Home.route) {
             HomeScreen()
         }
 
         composable(route = RootDestinationScreen.Splash.route) {
-//            SplashScreen(navController = navController)
+            SplashScreen(navController = navController)
         }
     }
 
