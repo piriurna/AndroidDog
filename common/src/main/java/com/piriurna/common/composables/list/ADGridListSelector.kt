@@ -18,11 +18,11 @@ import com.piriurna.common.models.ListSelectorItem
 
 @Composable
 fun ADGridListSelector(
-    selectedColor : Color = Color.Black,
-    unselectedColor : Color = Color.Gray,
+    selectedColor : Color = Color.White,
+    unselectedColor : Color = Color.LightGray,
     onOptionSelected : (ListSelectorItem) -> Unit,
     selectedOption : ListSelectorItem,
-    itemSize : Int = 30
+    itemSize : Int = 30,
 ) {
 
     var listOptionColor = unselectedColor

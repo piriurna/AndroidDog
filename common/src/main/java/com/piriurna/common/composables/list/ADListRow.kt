@@ -10,36 +10,41 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import coil.size.Scale
+import coil.size.Size
+import coil.size.SizeResolver
 
 @Composable
 fun ADListRow(
     modifier : Modifier = Modifier,
-    imageUrl : String,
-    title : String,
-    imageWidth : Dp,
-    imageHeight : Dp,
+    fields : List<String> = emptyList(),
+    fieldSize : Dp = 100.dp
 ) {
     Row(
-        modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(25.dp)
+        modifier = modifier
     ) {
-        AsyncImage(
-            modifier = Modifier
-                .width(imageWidth)
-                .height(imageHeight),
-            model = ImageRequest.Builder(LocalContext.current)
-                .data(imageUrl)
-                .crossfade(true)
-                .build(),
-            contentDescription = "Breed Image"
-        )
+        fields.forEach {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(modifier = Modifier.width(fieldSize), text = it, overflow = TextOverflow.Ellipsis, maxLines = 1, textAlign = TextAlign.Center)
 
-        Text(text = title)
+                Divider(
+                    modifier = Modifier
+                        .height(32.dp)
+                        .width(1.dp)
+                )
+
+            }
+        }
 
     }
     Divider()
@@ -50,13 +55,10 @@ fun ADListRow(
 @Composable
 fun ADListRowPreview() {
     val width = 300
-    Column(verticalArrangement = Arrangement.spacedBy(15.dp)) {
+    Column() {
         ADListRow(
             modifier = Modifier,
-            imageHeight = (width.toFloat() * 0.7498138495904691).dp ,
-            imageWidth = (width.dp),
-            imageUrl = "https://cdn2.thedogapi.com/images/BJa4kxc4X.jpg",
-            title = "Breed Test"
+            fields = listOf("Breed Test","Category", "Origin")
         )
     }
 

@@ -45,7 +45,7 @@ fun RowScope.ADNavigationItem(
                 .align(Alignment.Center),
         ) {
             Icon(
-                modifier = Modifier.size(32.dp),
+                modifier = Modifier.size(28.dp),
                 imageVector = icon,
                 contentDescription = "Item Icon",
                 tint = iconColor

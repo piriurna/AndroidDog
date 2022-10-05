@@ -1,36 +1,50 @@
 package com.piriurna.androiddog.presentation.breeds
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.piriurna.androiddog.presentation.navigation.models.NavigationOptions
+import com.piriurna.androiddog.presentation.breedcommons.BreedsShowContainer
+import com.piriurna.androiddog.presentation.breeds.models.BreedListEvents
+import com.piriurna.androiddog.presentation.breeds.models.BreedListState
 import com.piriurna.common.composables.list.ADGridListSelector
 import com.piriurna.common.composables.scaffold.ADScaffold
-import com.piriurna.common.models.ListSelectorItem
-import com.piriurna.domain.models.Breed
+
 
 @Composable
 fun BreedListScreen(
-    navController : NavHostController
+    navController: NavController
 ) {
-    val breedList = Breed.mockBreeds
-    
-    var listType by remember {
-        mutableStateOf(ListSelectorItem.LIST)
-    }
 
-    ADScaffold() {
+    val viewModel : BreedListViewModel = hiltViewModel()
 
-        Column(verticalArrangement = Arrangement.spacedBy(24.dp)) {
+    val state = viewModel.state.value
+
+    BuildBreedListScreen(state = state, events = viewModel::onTriggerEvent, navController = navController)
+}
+
+@Composable
+fun BuildBreedListScreen(
+    navController : NavController,
+    state : BreedListState,
+    events : (BreedListEvents) -> Unit
+) {
+
+    ADScaffold(
+        topBar = {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -38,23 +52,21 @@ fun BreedListScreen(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = "All breeds", fontWeight = FontWeight.Bold, fontSize = 30.sp)
+                Text(text = "All Breeds", fontWeight = FontWeight.Bold, fontSize = 30.sp, color = Color.White)
+
 
                 ADGridListSelector(
-                    onOptionSelected = {
-                        listType = it
-                    },
-                    selectedOption = listType
+                    onOptionSelected = { events(BreedListEvents.ChangeListType(it)) },
+                    selectedOption = state.listType
                 )
             }
-
-            if (listType == ListSelectorItem.LIST) {
-                BreedListView(breedList = breedList)
-            } else {
-                BreedGridView(breedList = breedList)
-            }
         }
-
+    ) {
+        BreedsShowContainer(
+            navController = navController,
+            breedList = state.breedList,
+            listType = state.listType,
+        )
     }
 }
 
@@ -62,5 +74,5 @@ fun BreedListScreen(
 @Preview(showBackground = true)
 @Composable
 fun BreedListScreenPreview() {
-    BreedListScreen(rememberNavController())
+    BuildBreedListScreen(state = BreedListState(), events = {}, navController = rememberNavController())
 }
