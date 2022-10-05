@@ -20,6 +20,13 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "API_KEY", "\"live_GVcEIAtKiDeXgE50Tn8qQiwXXLGg7zTZxqNvJJ5P6dVU56vftAx9aPuX2VsGZ4r9\"")
+        }
+        debug {
+            debuggable true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "API_KEY", "\"live_GVcEIAtKiDeXgE50Tn8qQiwXXLGg7zTZxqNvJJ5P6dVU56vftAx9aPuX2VsGZ4r9\"")
         }
     }
     compileOptions {
